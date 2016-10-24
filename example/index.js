@@ -2,12 +2,23 @@
 
 const cluster   = require('cluster')
 
-const PushSocket = require('./push-socket');
-const PullSocket = require('./pull-socket');
+const Push    = require('./push-socket');
+const Forward = require('./forward');
+const Pull    = require('./pull-socket');
 
 if(cluster.isMaster){
+	cluster.fork({
+		TYPE: "forward"
+	});
 	cluster.fork();
-	PushSocket("tcp://*:5555");
+	console.log("setup Push");
+	Push("tcp://*:5555");
 }else{
-	PullSocket("tcp://localhost:5555");
+	if(process.env.TYPE === 'forward') {
+		console.log("setup Forward");
+		Forward("tcp://localhost:5555", "tcp://localhost:5557");
+	}else{
+		console.log("setup Pull");
+		Pull("tcp://*:5557");
+	}
 }

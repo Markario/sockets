@@ -6,26 +6,25 @@ const CO        = require('co');
 module.exports = function(address){
 	let app = App();
 
-	let push = app.socket('push','Push Socket');
+	let push = app.push('Push Socket'); //or app.socket("push", "Push Socket");
 
 	push.use_snd(function* (next){
-		console.log("Push 1");
+		console.log("Push 1", this);
 		yield next;
-		console.log("Push 6");
+		console.log("Push 6", this);
 	});
 
 	push.use_snd(function* (next){
-		console.log("Push 2");
+		console.log("Push 2", this);
 		yield next;
 		console.log("Push 5");
 	});
 
 	push.use_snd(function* (next){
-		console.log("Push 3");
+		console.log("Push 3", this);
 		yield next;
-		console.log("Push 4");
+		console.log("Push 4", this);
 	});
-
 
 	push.bind(address);
 
