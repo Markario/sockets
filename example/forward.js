@@ -1,10 +1,11 @@
 'use strict';
 
-const App       = require('../lib/app');
+const Sockets   = require('../lib/').App;
+const Util      = require('../lib/').Util;
 const CO        = require('co');
 
 module.exports = function(address, faddress){
-	let app = App();
+	let app = Sockets();
 
 	let pull = app.pull('Pull then Forward Socket');
 	let push = app.push("Forward Socket");
@@ -29,6 +30,6 @@ module.exports = function(address, faddress){
 
 	pull.use_rcv(push.forwardOn());
 
-	pull.connect(address);
-	push.connect(faddress);
+	pull.connect(Util.connectAddr(address));
+	push.connect(Util.connectAddr(faddress));
 }

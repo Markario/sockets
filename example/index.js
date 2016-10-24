@@ -2,9 +2,9 @@
 
 const cluster   = require('cluster')
 
-const Push    = require('./push-socket');
+const Push    = require('./push');
 const Forward = require('./forward');
-const Pull    = require('./pull-socket');
+const Pull    = require('./pull');
 
 if(cluster.isMaster){
 	cluster.fork({

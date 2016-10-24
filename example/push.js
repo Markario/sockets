@@ -1,10 +1,11 @@
 'use strict';
 
-const App       = require('../lib/app');
+const Sockets   = require('../lib/').App;
+const Util      = require('../lib/').Util;
 const CO        = require('co');
 
 module.exports = function(address){
-	let app = App();
+	let app = Sockets();
 
 	let push = app.push('Push Socket'); //or app.socket("push", "Push Socket");
 
@@ -26,7 +27,7 @@ module.exports = function(address){
 		console.log("Push 4", this);
 	});
 
-	push.bind(address);
+	push.bind(Util.bindAddr(address));
 
 	CO(function* (){
 		console.log("Send some stuff");

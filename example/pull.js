@@ -1,12 +1,13 @@
 'use strict';
 
-const App       = require('../lib/app');
+const Sockets   = require('../lib/').App;
+const Util      = require('../lib/').Util;
 const CO        = require('co');
 
 module.exports = function(address){
-	let app = App();
+	let app = Sockets();
 
-	let pull = app.socket('pull','Pull Socket');
+	let pull = app.pull('Pull Socket');
 
 	pull.use_rcv(function* (next){
 		console.log("Pull 1", this);
@@ -26,5 +27,5 @@ module.exports = function(address){
 		console.log("Pull 4", this);
 	});
 
-	pull.bind(address);
+	pull.bind(Util.bindAddr(address));
 }

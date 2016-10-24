@@ -1,9 +1,9 @@
 'use strict';
 
-const App       = require('./app');
+const Sockets   = require('../lib/').App;
 const CO        = require('co');
 
-let app = App();
+let app = Sockets();
 
 let push = app.socket('push','Push Socket');
 let pull = app.socket('pull','Pull Socket');
@@ -51,7 +51,7 @@ console.log("Done setting up");
 
 CO(function* (){
 	console.log("Send some stuff");
-	yield push.send(push.createContext({some: "message"}));
+	// yield push.send(push.createContext({some: "message"}));
 	yield push.send(push.createContext({some: "message"}), function* (){
 		console.log("Some next after send");
 	});
