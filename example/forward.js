@@ -27,10 +27,6 @@ module.exports = function(address, faddress){
 		console.log("Forward 4", this);
 	});
 
-	push.use_snd(function* (){
-
-	});
-
 	pull.use_rcv(push.forwardOn());
 
 	pull.connect(address);
