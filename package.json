@@ -2,7 +2,7 @@
   "name": "zmq-flow",
   "version": "0.0.1",
   "description": "",
-  "main": "lib/app.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
