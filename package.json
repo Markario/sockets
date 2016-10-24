@@ -1,25 +1,16 @@
 {
-  "name": "zmq-test",
-  "version": "1.0.0",
+  "name": "zmq-flow",
+  "version": "0.0.1",
   "description": "",
-  "main": "zmq-test.js",
+  "main": "lib/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bluebird": "^3.4.6",
     "co": "^4.6.0",
-    "co-request": "^1.0.0",
-    "dotenv": "^2.0.0",
-    "koa": "^1.2.4",
-    "koa-bodyparser": "^2.2.0",
-    "koa-cors": "0.0.16",
-    "koa-mount": "^1.3.0",
-    "koa-router": "^5.4.0",
     "lodash": "^4.16.4",
-    "mongoose": "^4.6.4",
     "zmq": "^2.15.3"
   }
 }
