@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chan": "^0.6.1",
     "co": "^4.6.0",
     "lodash": "^4.16.4",
     "zmq": "^2.15.3"
