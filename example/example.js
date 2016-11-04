@@ -1,9 +1,9 @@
 'use strict';
 
-const Sockets   = require('../lib/').App;
+const Sockets   = require('../lib/');
 const CO        = require('co');
 
-let app = Sockets();
+let app = new Sockets.App();
 
 let push = app.socket('push','Push Socket');
 let pull = app.socket('pull','Pull Socket');
@@ -47,12 +47,7 @@ pull.use_rcv(function* (next){
 push.bind("tcp://*:5555");
 pull.connect("tcp://localhost:5555");
 
-console.log("Done setting up");
-
 CO(function* (){
-	console.log("Send some stuff");
-	// yield push.send(push.createContext({some: "message"}));
-	yield push.send(push.createContext({some: "message"}), function* (){
-		console.log("Some next after send");
-	});
+	console.log(app.list());
+	yield push.send(push.createContext({some: "message"}));
 });

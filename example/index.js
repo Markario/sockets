@@ -5,6 +5,7 @@ const cluster   = require('cluster')
 const Push    = require('./push');
 const Forward = require('./forward');
 const Pull    = require('./pull');
+const Address = require('../lib/').Address;
 
 if(cluster.isMaster){
 	cluster.fork({
@@ -12,13 +13,13 @@ if(cluster.isMaster){
 	});
 	cluster.fork();
 	console.log("setup Push");
-	Push("tcp://*:5555");
+	Push(new Address("tcp", "*", 5555));
 }else{
 	if(process.env.TYPE === 'forward') {
 		console.log("setup Forward");
-		Forward("tcp://localhost:5555", "tcp://localhost:5557");
+		Forward(new Address("tcp", "localhost", 5555), new Address("tcp", "localhost", 5557));
 	}else{
 		console.log("setup Pull");
-		Pull("tcp://*:5557");
+		Pull(new Address("tcp", "*", 5557));
 	}
 }
